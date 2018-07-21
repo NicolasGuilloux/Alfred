@@ -30,7 +30,7 @@ chmod +x install_raspberry.sh
 
 
 ## Demo:
-- Online demo: Can be found at [alfred.nicolasguilloux.eu](https://alfred.nicolasguilloux.eu/)
+- Online demo: Can be found at [alfred.nicolasguilloux.eu](http://alfred.nicolasguilloux.eu/)
 
 **Note:**  
 Username: test@test.com      
