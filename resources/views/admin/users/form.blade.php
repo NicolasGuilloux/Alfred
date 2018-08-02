@@ -27,7 +27,7 @@
 
     <p id="new_city_name" style="display: none;"></p>
 
-    <input class="form-control" name="city" id="city" type="text" placeholder="Search a city">
+    <input class="form-control" name="city" id="city" type="text" placeholder="Search a city" autocomplete="off">
 </div>
 
 {!! Form::myInput('hidden', 'accuweather_id') !!}

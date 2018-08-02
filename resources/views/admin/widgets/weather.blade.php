@@ -1,11 +1,6 @@
 <!-- #Weather ==================== -->
 <div class="bd bgc-white p-20">
     <div class="layers">
-        <!-- Widget Title -->
-        <div class="layer w-100 mB-20">
-            <h6 class="lh-1">Weather in {{ $city->name }}</h6>
-        </div>
-
         <!-- Today Weather -->
         <div class="layer w-100">
             <div class="peers ai-c jc-sb fxw-nw">
@@ -36,7 +31,10 @@
                             <h5 class="mB-5">{{ date('l', $city->forecast[0]['timestamp']) }}</h5>
                         </div>
                         <div class="layer">
-                            <span class="fw-600 c-grey-600">{{ date('M, d Y', $city->forecast[0]['timestamp']) }}</span>
+                            <span class="fw-600 c-grey-600">{{ date('F, d Y', $city->forecast[0]['timestamp']) }}</span>
+                        </div>
+                        <div class="layer">
+                            {{ $city->name }}, {{ $city->country }}
                         </div>
                     </div>
                 </div>

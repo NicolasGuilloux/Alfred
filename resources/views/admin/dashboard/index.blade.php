@@ -78,6 +78,9 @@
             </div>
         @endif
 
+        <!-- Map -->
+        @include('admin.widgets.map')
+
     </div>
 
 @endsection

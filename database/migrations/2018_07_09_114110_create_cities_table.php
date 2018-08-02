@@ -18,7 +18,7 @@ class CreateCitiesTable extends Migration
             $table->string('name');
             $table->string('country');
             $table->string('area')->nullable();
-            $table->unsignedInteger('accuweather_id')->default(207931);
+            $table->unsignedInteger('accuweather_id');
             $table->timestamps();
         });
 

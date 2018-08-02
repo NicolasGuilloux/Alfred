@@ -1,7 +1,7 @@
 # Alfred
 
-Based on **_[Laradminator](https://github.com/kossa/laradminator).
-**_[Laravel](https://laravel.com/) PHP Framework with [Adminator](https://github.com/puikinsh/Adminator-admin-dashboard)_**  as admin dash.
+Based on **_[Laradminator](https://github.com/kossa/laradminator)-**.
+[Laravel](https://laravel.com/) PHP Framework with [Adminator](https://github.com/puikinsh/Adminator-admin-dashboard) as admin dash.
 
 This a project made for the final project of the [Master of Science Interactive Media](https://www.ucc.ie/en/ckr05/) of the [University College Cork](https://www.ucc.ie/).
 
@@ -24,8 +24,8 @@ To install everything from scratch (no Nginx, no sql, nothing):
 ```bash
 git clone https://github.com/NicolasGuilloux/Alfred.git
 cd alfred
-chmod +x install_raspberry.sh
-./install_raspberry.sh
+chmod +x install_raspberrypi.sh
+./install_raspberrypi.sh
 ```
 
 
