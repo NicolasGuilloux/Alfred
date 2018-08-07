@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Storage;
+
 use App\Sensor;
 
 class SensorController extends Controller
@@ -15,11 +17,18 @@ class SensorController extends Controller
      */
     public function index() {
         $sensors = Sensor::where('parent_id', '=', null)->get();
-        // $items = Sensor::all();
 
         $items = array([], [], []);
         foreach( $sensors as $sensor )
             $items[$sensor->type][] = $sensor->getDataTree();
+
+        $driversList = Storage::files('drivers/');
+        $drivers = array();
+
+        foreach( $driversList as $driver ) {
+            $name = preg_replace('/\\.[^.\\s]{3,4}$/', '', str_replace('drivers/', '', $driver) );
+            $drivers[$name] = $name;
+        }
 
         return view('admin.sensors.index', compact('items'));
     }
@@ -36,7 +45,8 @@ class SensorController extends Controller
             $sensorsTable[$sensor->id] = $sensor->name;
 
         return view('admin.sensors.create')
-            ->with('sensorsTable', $sensorsTable);
+            ->with('sensorsTable', $sensorsTable)
+            ->withDrivers($drivers);
     }
 
     /**
@@ -79,8 +89,17 @@ class SensorController extends Controller
         foreach(Sensor::all() as $sensor)
             $sensorsTable[$sensor->id] = $sensor->name;
 
+        $driversList = Storage::files('drivers/');
+        $drivers = array();
+
+        foreach( $driversList as $driver ) {
+            $name = preg_replace('/\\.[^.\\s]{3,4}$/', '', str_replace('drivers/', '', $driver) );
+            $drivers[$name] = $name;
+        }
+
         return view('admin.sensors.edit', compact('item'))
-            ->with('sensorsTable', $sensorsTable);
+            ->with('sensorsTable', $sensorsTable)
+                ->withDrivers($drivers);
     }
 
     /**

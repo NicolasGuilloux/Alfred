@@ -74,34 +74,34 @@ class DatabaseSeeder extends Seeder
         #Electricity
         Sensor::insert([
             'name' => 'House',
-            'type' => 0,
+            'driverName' => 'Electricity',
             'place' => 'Closet'
         ]);
 
         Sensor::insert([
             'name' => 'Kitchen',
-            'type' => 0,
+            'driverName' => 'Electricity',
             'place' => 'Kitchen',
             'parent_id' => 1
         ]);
 
         Sensor::insert([
             'name' => 'Fridge',
-            'type' => 0,
+            'driverName' => 'Electricity',
             'place' => 'Kitchen',
             'parent_id' => 2
         ]);
 
         Sensor::insert([
             'name' => 'Microwave',
-            'type' => 0,
+            'driverName' => 'Electricity',
             'place' => 'Kitchen',
             'parent_id' => 2
         ]);
 
         Sensor::insert([
             'name' => 'Computer',
-            'type' => 0,
+            'driverName' => 'Electricity',
             'place' => 'Living room',
             'parent_id' => 1
         ]);
@@ -109,13 +109,13 @@ class DatabaseSeeder extends Seeder
         # Water
         $main = Sensor::insert([
             'name' => 'Main Water Supply',
-            'type' => 2,
+            'driverName' => 'Water',
             'place' => 'Washroom'
         ]);
 
         Sensor::insert([
             'name' => 'Shower',
-            'type' => 2,
+            'driverName' => 'Water',
             'place' => 'Bathroom',
             'parent_id' => 6
         ]);
@@ -123,7 +123,7 @@ class DatabaseSeeder extends Seeder
         # Waste
         Sensor::insert([
             'name' => 'General garbage',
-            'type' => 1,
+            'driverName' => 'Waste',
             'place' => 'Kitchen'
         ]);
 

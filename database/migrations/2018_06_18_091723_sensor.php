@@ -16,7 +16,7 @@ class Sensor extends Migration
         Schema::create('sensors', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('type')->comment('0: Electricity, 1: Waste, 2: Water');
+            $table->string('driverName');
             $table->unsignedInteger('parent_id')->nullable();
             $table->string('place')->nullable();
             $table->timestamps();

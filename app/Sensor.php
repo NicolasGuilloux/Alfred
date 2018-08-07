@@ -15,7 +15,7 @@ class Sensor extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'type', 'parent_id', 'place'
+        'name', 'driverName', 'driver', 'parent_id', 'place',
     ];
 
     /*
@@ -25,10 +25,10 @@ class Sensor extends Model
     */
     public static function rules($update = false, $id = null) {
         $commun = [
-            'name'      => 'required',
-            'type'      => 'required',
-            'parent_id' => 'nullable',
-            'place'     => 'required'
+            'name'       => 'required',
+            'driverName' => 'required',
+            'parent_id'  => 'nullable',
+            'place'      => 'required'
         ];
 
         if ($update) {
@@ -36,10 +36,10 @@ class Sensor extends Model
         }
 
         return array_merge($commun, [
-            'name'      => 'required',
-            'type'      => 'required',
-            'parent_id' => 'nullable',
-            'place'     => 'required'
+            'name'       => 'required',
+            'driverName' => 'required',
+            'parent_id'  => 'nullable',
+            'place'      => 'required'
         ]);
     }
 
@@ -58,7 +58,21 @@ class Sensor extends Model
     }
 
     public function reports() {
-        return $this->hasMany('App\Report')->orderBy('date');;
+        return $this->hasMany('App\Report')->orderBy('date');
+    }
+
+    public function getDriverAttribute() {
+
+        if( !isset($this->driverObject) ) {
+            include_once( storage_path('app/public/drivers/'. $this->driverName .'.php') );
+            $this->driverObject = new $this->driverName();
+        }
+
+        return $this->driverObject;
+    }
+
+    public function getTypeAttribute() {
+        return $this->driver->type;
     }
 
     /*

@@ -28,3 +28,7 @@ Route::group(['prefix' => ADMIN, 'as' => ADMIN . '.', 'middleware'=>['auth', 'Ro
 Route::get('/', function () {
     return redirect('/' . ADMIN);
 })->name('home');
+
+Route::get('/test', function() {
+    dd( );
+});
