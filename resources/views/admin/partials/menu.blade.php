@@ -25,6 +25,15 @@
     </a>
 </li>
 
+<li class="nav-item mT-20">
+    <a class='sidebar-link' href="{{ route(ADMIN . '.market.index') }}">
+        <span class="icon-holder">
+            <i class="c-yellow-500 ti-shopping-cart"></i>
+        </span>
+        <span class="title">Market</span>
+    </a>
+</li>
+
 <li class="nav-item">
     <a class='sidebar-link' href="{{ route(ADMIN . '.users.index') }}">
         <span class="icon-holder">

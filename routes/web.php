@@ -22,6 +22,11 @@ Route::group(['prefix' => ADMIN, 'as' => ADMIN . '.', 'middleware'=>['auth', 'Ro
     Route::get('/reports/{date}/show', 'ReportController@show')->name('reports.show');
 
     Route::get('/reports/{id}/chart/{date}', 'ReportController@chart')->name('chart');
+
+    # Market
+    Route::get('/market', 'MarketController@index')->name('market.index');
+    Route::get('/market/save/{name}', 'MarketController@save')->name('market.save');
+    Route::get('/market/delete/{name}', 'MarketController@delete')->name('market.delete');
 });
 
 

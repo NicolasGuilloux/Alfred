@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Http\helpers;
+
 class Sensor extends Model
 {
     use Notifiable;
@@ -62,11 +64,8 @@ class Sensor extends Model
     }
 
     public function getDriverAttribute() {
-
-        if( !isset($this->driverObject) ) {
-            include_once( storage_path('app/public/drivers/'. $this->driverName .'.php') );
-            $this->driverObject = new $this->driverName();
-        }
+        if( !isset($this->driverObject) )
+            $this->driverObject = getDriver( $this->driverName );
 
         return $this->driverObject;
     }

@@ -22,12 +22,11 @@ class SensorController extends Controller
         foreach( $sensors as $sensor )
             $items[$sensor->type][] = $sensor->getDataTree();
 
-        $driversList = Storage::files('drivers/');
-        $drivers = array();
+        $drivers = getDrivers();
+        $driverList = array();
 
-        foreach( $driversList as $driver ) {
-            $name = preg_replace('/\\.[^.\\s]{3,4}$/', '', str_replace('drivers/', '', $driver) );
-            $drivers[$name] = $name;
+        foreach( $drivers as $driver ) {
+            $drivers[$driver->driverName] = $driver->name;
         }
 
         return view('admin.sensors.index', compact('items'));
@@ -99,7 +98,7 @@ class SensorController extends Controller
 
         return view('admin.sensors.edit', compact('item'))
             ->with('sensorsTable', $sensorsTable)
-                ->withDrivers($drivers);
+            ->withDrivers($drivers);
     }
 
     /**

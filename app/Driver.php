@@ -21,9 +21,10 @@ abstract class Driver {
     function __construct() {
         $this->build();
 
-        $this->typeName = config('variables.sensorType')[$this->type];
-        $this->unit     = config('variables.sensorUnit')[$this->type];
-        $this->color    = config('variables.typeColor')[$this->type];
+        $this->driverName = get_class($this);
+        $this->typeName   = config('variables.sensorType')[$this->type];
+        $this->unit       = config('variables.sensorUnit')[$this->type];
+        $this->color      = config('variables.typeColor')[$this->type];
     }
 
     /**
