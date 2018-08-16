@@ -6,11 +6,13 @@
 
 @section('content')
 
-<div class="mB-20">
-    <a href="{{ route(ADMIN . '.sensors.create') }}" class="btn btn-info">
-        {{ trans('app.add_button') }}
-    </a>
-</div>
+@if( Auth::user()->role > 9 )
+    <div class="mB-20">
+        <a href="{{ route('sensors.create') }}" class="btn btn-info">
+            {{ trans('app.add_button') }}
+        </a>
+    </div>
+@endif
 
 <div class="row">
     <div class="col-md-6">

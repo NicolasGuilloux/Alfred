@@ -1,15 +1,21 @@
 <div class="masonry-item col-md-12">
     <div class="layers bd bgc-white p-20">
         <div class="layer w-100 mB-10">
-            <div class="text-center">
-                <input type="date" name="date" />
+            <div class="text-center mB-10">
+                @include('admin.partials.datepicker', [
+                    'id' => 'dateMap',
+                    'onSelect' => 'getData',
+                    'availableDays' => getJSON( env('APP_URL_SERVER') . '/api/available/dates' )
+                ])
             </div>
+
             {!! file_get_contents( asset('images/world.svg') ) !!}
+
         </div>
     </div>
 </div>
 
-<div id="infobox" style="position: fixed; background-color: white; border: 1px solid black;"></div>
+<div id="infobox" style="position: fixed; background-color: white; border: 1px solid black; display: none;"></div>
 
 @section('scripts')
     @parent
@@ -18,14 +24,22 @@
         var paths = $('svg path');
         var colors = ['#13a2bd', '#1e90a8', '#0d3841'];
         var defaultColor = $('svg path')[0].style.fill;
+        var infobox = $('#infobox');
 
-        function getData() {
-            var date = $('input[type="date"]').val();
+        /**
+         * (AJAX) Get the data from the server
+         */
+        function getData(date) {
             $.getJSON('{!! env('APP_URL_SERVER') !!}/api/date/' + date, function(data) {
                 displayData(data);
-            })
+            });
         }
 
+        /**
+         * Display the data get from the server
+         *
+         * @param Array
+         */
         function displayData(data) {
             var colorIndex = 0;
 
@@ -71,8 +85,9 @@
             }
         }
 
-        var infobox = $('#infobox');
-
+        /**
+         * EventListener to show the infobox
+         */
         window.onmousemove = function (e) {
             var x = e.clientX,
                 y = e.clientY;
@@ -82,11 +97,14 @@
                 infobox[0].style.top = (y + 20) + 'px';
                 infobox[0].style.left = (x + 20) + 'px';
 
+                var element = $(e.target);
+
                 infobox.html(
-                    'Samples: '     + $(e.target).attr('samples')   + ' people<br />' +
-                    'Eletricity: '  + $(e.target).attr('electric')  + ' kWh<br />' +
-                    'Water: '       + $(e.target).attr('water')     + ' L<br />' +
-                    'Waste: '       + $(e.target).attr('waste')     + ' kg'
+                    '<h4>'          + element.attr('title')     + '</h4>' +
+                    'Samples: '     + element.attr('samples')   + ' people<br />' +
+                    'Eletricity: '  + element.attr('electric')  + ' kWh<br />' +
+                    'Water: '       + element.attr('water')     + ' L<br />' +
+                    'Waste: '       + element.attr('waste')     + ' kg'
                 );
 
             } else {
@@ -94,8 +112,5 @@
             }
 
         };
-
-        getData();
-        $('input[type="date"]').on('change', getData);
     </script>
 @endsection

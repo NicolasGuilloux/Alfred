@@ -37,6 +37,13 @@ class Report extends Model
         ],
 
         "options" => [
+            "elements" => [
+                "point" => [
+                    // If there are to much points
+                    "radius" => 0
+                ]
+            ],
+
             "legend" => [
                 "display" => false
             ],

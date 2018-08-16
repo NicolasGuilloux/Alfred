@@ -13,9 +13,12 @@
         <!-- Notifications -->
         <ul class="nav-right">
             <li class="notifications dropdown">
-                <span class="counter bgc-red">
-                    2
-                </span>
+                @if( $notifs['unread'] > 0 )
+                    <span class="counter bgc-red">
+                        {{ $notifs['unread'] }}
+                    </span>
+                @endif
+
                 <a href="" class="dropdown-toggle no-after" data-toggle="dropdown">
                     <i class="ti-bell"></i>
                 </a>
@@ -27,47 +30,34 @@
                     </li>
                     <li>
                         <ul class="ovY-a pos-r scrollable lis-n p-0 m-0 fsz-sm">
-                            <li>
-                                <a href="" class='peers fxw-nw td-n p-20 bdB c-grey-800 cH-blue bgcH-grey-100'>
-                                    <div class="peer mR-15">
-                                        <img class="w-3r bdrs-50p" src="/images/1.jpg" alt="">
-                                    </div>
-                                    <div class="peer peer-greed">
-                                        <span>
-                                            <span class="fw-500">John Doe</span>
-                                            <span class="c-grey-600">liked your <span class="text-dark">post</span></span>
-                                        </span>
-                                        <p class="m-0">
-                                            <small class="fsz-xs">5 mins ago</small>
-                                        </p>
-                                    </div>
-                                </a>
-                            </li>
 
-                            <li>
-                                <a href="" class='peers fxw-nw td-n p-20 bdB c-grey-800 cH-blue bgcH-grey-100'>
-                                    <div class="peer mR-15">
-                                        <img class="w-3r bdrs-50p" src="/images/2.jpg" alt="">
-                                    </div>
-                                    <div class="peer peer-greed">
-                                        <span>
-                                            <span class="fw-500">Moo Doe</span>
-                                            <span class="c-grey-600">liked your <span class="text-dark">cover image</span></span>
-                                        </span>
+                            @foreach( $notifs['notifications'] as $notif )
+                                <li>
+                                    <a href="" class='peers fxw-nw td-n p-20 bdB c-grey-800 cH-blue bgcH-grey-100'>
+                                        <div class="peer mR-15">
+                                            <img class="w-3r bdrs-50p" src="{!! $notif['img'] !!}" alt="">
+                                        </div>
+                                        <div class="peer peer-greed">
 
-                                        <p class="m-0">
-                                            <small class="fsz-xs">7 mins ago</small>
-                                        </p>
-                                    </div>
-                                </a>
-                            </li>
+                                            <span class="fw-500">{{ $notif['author'] }}</span><br />
 
+                                            <span class="c-grey-600">
+                                                {!! $notif['content'] !!}
+                                            </span>
+
+                                            <p class="m-0">
+                                                <small class="fsz-xs">{{ date('D d M Y \a\t h:i a', $notif['date']) }}</small>
+                                            </p>
+                                        </div>
+                                    </a>
+                                </li>
+                            @endforeach
                         </ul>
                     </li>
 
                     <li class="pX-20 pY-15 ta-c bdT">
                         <span>
-                            <a href="" class="c-grey-600 cH-blue fsz-sm td-n">View All Notifications <i class="ti-angle-right fsz-xs mL-10"></i></a>
+                            <a href="{!! route('notif.index') !!}" class="c-grey-600 cH-blue fsz-sm td-n">View All Notifications <i class="ti-angle-right fsz-xs mL-10"></i></a>
                         </span>
                     </li>
                 </ul>
@@ -84,14 +74,16 @@
                     </div>
                 </a>
                 <ul class="dropdown-menu fsz-sm">
+                    <!--
+                        <li>
+                            <a href="" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
+                                <i class="ti-settings mR-10"></i>
+                                <span>Setting</span>
+                            </a>
+                        </li>
+                    -->
                     <li>
-                        <a href="" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
-                            <i class="ti-settings mR-10"></i>
-                            <span>Setting</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route(ADMIN . '.users.edit', auth()->user()->id) }}" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
+                        <a href="{{ route('users.edit', auth()->user()->id) }}" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
                             <i class="ti-user mR-10"></i>
                             <span>Profile</span>
                         </a>
@@ -127,5 +119,17 @@
 
         displayDate();
         setInterval(displayDate, 1000);
+    </script>
+
+    <script>
+        $('.notifications').click( function() {
+
+            if( $('.notifications .counter').is(":visible") ) {
+                console.log("Update notifications")
+
+                $('.notifications .counter').hide();
+                $.ajax('{!! route('notif.read', $notifs['lastId']) !!}');
+            }
+        })
     </script>
 @endsection

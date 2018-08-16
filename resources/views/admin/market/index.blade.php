@@ -27,13 +27,13 @@
 
                         @if( isset($driver->newVersion) )
                             <li class="list-inline-item">
-                                <a href="{!! route('admin.market.save', $driver->driverName) !!}" title="Update the addon to the version {{ $driver->newVersion }}" class="btn btn-success btn-sm"><span class="ti-reload"></span></a>
+                                <a href="{!! route('market.save', $driver->driverName) !!}" title="Update the addon to the version {{ $driver->newVersion }}" class="btn btn-success btn-sm"><span class="ti-reload"></span></a>
                             </li>
                         @endif
 
                         @if( !isset($driver->protected) || !$driver->protected )
                             <li class="list-inline-item">
-                                <a href="{!! route('admin.market.delete', $driver->driverName) !!}" title="Delete the addon" class="btn btn-danger btn-sm"><span class="ti-trash"></span></a>
+                                <a href="{!! route('market.delete', $driver->driverName) !!}" title="Delete the addon" class="btn btn-danger btn-sm"><span class="ti-trash"></span></a>
                             </li>
                         @endif
                     </ul>
@@ -62,7 +62,7 @@
 
                     <ul class="list-inline">
                         <li class="list-inline-item">
-                            <a href="{!! route('admin.market.save', $driver['driverName']) !!}" title="Install the addon" class="btn btn-primary btn-sm"><span class="ti-import"></span></a>
+                            <a href="{!! route('market.save', $driver['driverName']) !!}" title="Install the addon" class="btn btn-primary btn-sm"><span class="ti-import"></span></a>
                         </li>
                     </ul>
                 </div>

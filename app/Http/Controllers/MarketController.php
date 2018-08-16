@@ -44,7 +44,7 @@ class MarketController extends Controller
 
         Storage::put('drivers/' . $name . '.php', $source);
 
-        return redirect( route('admin.market.index') );
+        return redirect( route('market.index') );
     }
 
     /**
@@ -58,6 +58,6 @@ class MarketController extends Controller
         if( !isset($driver->protected) || !$driver->protected)
             Storage::delete('drivers/' . $name . '.php');
 
-        return redirect( route('admin.market.index') );
+        return redirect( route('market.index') );
     }
 }

@@ -85,7 +85,7 @@ class Sensor extends Model
             'id' => $this->id,
             'name' => $this->name,
             'type' => $this->type,
-            'data' => ['href' => route(ADMIN . '.sensors.edit', $this->id)],
+            'data' => ['href' => route('sensors.edit', $this->id)],
             'children' => []
         ];
 

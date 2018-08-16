@@ -24,6 +24,12 @@
 
 .clickable:hover { box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
 
+/* Date picker */
+.datepicker {
+    background-color: white;
+    cursor: pointer;
+}
+
 /* Map */
 svg {
     max-width: 100%;

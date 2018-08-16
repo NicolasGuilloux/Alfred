@@ -12,18 +12,19 @@
 
 <html lang="{{ app()->getLocale() }}">
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
         <!-- CSRF Token -->
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+        <meta name="csrf-token" content="{{ csrf_token() }}" />
 
         <title>{{ env('APP_LONG_NAME') }}</title>
 
         <!-- Styles -->
-        <link rel="shortcut icon" type="image/png" href="{{ asset('favicon.png') }}"/>
-        <link href="{{ asset('/assets/css/app.css') }}" rel="stylesheet">
-        <link href="{{ asset('/assets/css/main.css') }}" rel="stylesheet">
+        <link rel="shortcut icon" type="image/png" href="{{ asset('favicon.png') }}" />
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/flick/jquery-ui.css" />
+        <link rel="stylesheet" href="{{ asset('/assets/css/app.css') }}" />
+        <link rel="stylesheet" href="{{ asset('/assets/css/main.css') }}" />
 
         @yield('head')
     </head>
@@ -66,6 +67,7 @@
 			  src="https://code.jquery.com/jquery-3.3.1.min.js"
 			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 			  crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 
         <script src="{{ asset('/assets/js/app.js') }}"></script>
         <script src="{{ asset('/assets/js/main.js') }}"></script>

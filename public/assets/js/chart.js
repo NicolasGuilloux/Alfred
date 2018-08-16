@@ -39,8 +39,7 @@ function updateChart(data) {
  * Event listener when the datepicker changes
  * Fetch the data and update the chart
  */
-document.getElementById('datePicker').addEventListener('input', function (evt) {
-    var date = evt.target.value;
+function getChart(date) {
 
     // Get the data and update the graphic
     loadDoc(date, function(response) {
@@ -59,7 +58,4 @@ document.getElementById('datePicker').addEventListener('input', function (evt) {
             ctx.clear();
 
     });
-});
-
-// Reset the datePicker
-document.getElementById('datePicker').value="";
+};

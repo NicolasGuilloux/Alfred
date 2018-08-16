@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Auth;
+
 use App\User;
 
 class UserController extends Controller
@@ -17,7 +19,10 @@ class UserController extends Controller
     {
         $items = User::latest('updated_at')->get();
 
-        return view('admin.users.index', compact('items'));
+        if( Auth::user()->role < 10 )
+            return view('admin.users.index', compact('items'));
+
+        return view('admin.users.adminindex', compact('items'));
     }
 
     /**
@@ -64,8 +69,10 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $item = User::findOrFail($id);
+        if( Auth::user()->role < 10 && Auth::user()->id != intval($id) )
+            return redirect( route('home') );
 
+        $item = User::findOrFail($id);
         return view('admin.users.edit', compact('item'));
     }
 
@@ -78,13 +85,16 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if( Auth::user()->role < 10 && Auth::user()->id != intval($id) )
+            return redirect( route('home') );
+
         $this->validate($request, User::rules(true, $id));
 
         $item = User::findOrFail($id);
 
         $item->update($request->all());
 
-        return redirect()->route(ADMIN . '.users.index')->withSuccess(trans('app.success_update'));
+        return redirect()->route('users.index')->withSuccess(trans('app.success_update'));
     }
 
     /**

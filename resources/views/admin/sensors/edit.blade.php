@@ -5,23 +5,51 @@
 @stop
 
 @section('content')
-    {!! Form::model($item, [
-        'action' => ['SensorController@update', $item->id],
-        'method' => 'put'
-      ])
-    !!}
 
-    <div class="row mB-40">
-        <div class="col-sm-8">
-            <div class="bgc-white p-20 bd">
-                @include('admin.sensors.form')
+    @if( Auth::user()->role > 9 )
+        {!! Form::model($item, [
+            'action' => ['SensorController@update', $item->id],
+            'method' => 'put'
+          ])
+        !!}
 
-                <button type="submit" class="btn btn-primary">{{ trans('app.edit_button') }}</button>
+        <div class="row mB-40">
+            <div class="col-sm-8">
+                <div class="bgc-white p-20 bd">
+                    @include('admin.sensors.form')
+
+                    <button type="submit" class="btn btn-primary">{{ trans('app.edit_button') }}</button>
+                </div>
             </div>
         </div>
-    </div>
 
-    {!! Form::close() !!}
+        {!! Form::close() !!}
+    @else
+        <div class="row mB-40">
+            <div class="col-sm-8">
+                <div class="bgc-white p-20 bd">
+                    <table class="table table-hover">
+                        <tr>
+                            <th class="row">Name</td>
+                            <td>{{ $item->name }}</td>
+                        </tr>
+                        <tr>
+                            <th class="row">Driver Name</td>
+                            <td>{{ $item->driverName }}</td>
+                        </tr>
+                        <tr>
+                            <th class="row">Parent</td>
+                            <td>{{ $item->parent_id ? $item->parent_id : "None" }}</td>
+                        </tr>
+                        <tr>
+                            <th class="row">Location</td>
+                            <td>{{ $item->place }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    @endif
 
     @if(sizeof($item->reports) > 0 )
 
@@ -32,13 +60,11 @@
 
                     <p>
                         Choose a date to visualise the data:
-                        <input  type="date"
-                                name="date"
-                                id="datePicker"
-                                value="jj/mm/aaaa"
-                                min="{{ $item->reports[0]['date'] }}"
-                                max="{{ $item->reports[ sizeof($item->reports) -1 ]['date'] }}"
-                        />
+                        @include('admin.partials.datepicker', [
+                            'id' => 'datePicker',
+                            'onSelect' => 'getChart',
+                            'availableDays' => getJSON( env('APP_URL_SERVER') . '/api/available/dates' )
+                        ])
                     </p>
 
                     <canvas id="myChart"></canvas>

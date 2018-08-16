@@ -50,7 +50,7 @@
 
     <script>
         function searchCity() {
-            var url = '{{ route('admin.city.search', '') }}/' + cityField.val();
+            var url = '{{ route('city.search', '') }}/' + cityField.val();
             console.log(url);
 
             $.getJSON(url, function(data) {

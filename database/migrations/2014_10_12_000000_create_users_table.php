@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->integer('role')->default(0);
             $table->text('bio')->nullable();
             $table->unsignedInteger('city_id')->nullable();
+            $table->unsignedInteger('notif_id')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });
