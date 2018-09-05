@@ -18,12 +18,6 @@ class CreateReports extends Migration
             $table->unsignedInteger('sensor_id');
 
             $table->date('date');
-
-            $table->unsignedInteger('average');
-            $table->unsignedInteger('min');
-            $table->unsignedInteger('max');
-            $table->unsignedInteger('total');
-
             $table->text('data');
 
             $table->timestamps();

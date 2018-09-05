@@ -13,7 +13,7 @@ class Report extends Model
      */
     protected $fillable = [
         'sensor_id', 'startDate', 'endDate', 'interval',
-        'average', 'min', 'max',
+        'average', 'min', 'max', 'total',
         'data'
     ];
 
@@ -114,6 +114,28 @@ class Report extends Model
 
     public function getDataAttribute($value) {
         return json_decode($value);
+    }
+
+    public function getTotalAttribute() {
+        $data = $this->data;
+        $length = sizeof($data);
+
+        return array_sum($data) * 24 / $length;
+    }
+
+    public function getMaxAttribute() {
+        return max($this->data);
+    }
+
+    public function getMinAttribute() {
+        return min($this->data);
+    }
+
+    public function getAverageAttribute() {
+        $total  = $this->total;
+        $length = sizeof($this->data);
+
+        return $total/$length;
     }
 
     public function getChartAttribute() {

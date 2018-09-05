@@ -143,10 +143,6 @@ class DatabaseSeeder extends Seeder
                 Report::insert([
                     'date'      => '2018-06-' . $d,
                     'sensor_id' => 5,
-                    'average'   => array_sum($array)/count($array),
-                    'min'       => min($array),
-                    'max'       => max($array),
-                    'total'     => array_sum($array),
                     'data'      => json_encode($array)
                 ]);
 
@@ -155,10 +151,6 @@ class DatabaseSeeder extends Seeder
                 Report::insert([
                     'date'      => '2018-06-' . $d,
                     'sensor_id' => 1,
-                    'average'   => array_sum($array)/count($array),
-                    'min'       => min($array),
-                    'max'       => max($array),
-                    'total'     => array_sum($array),
                     'data'      => json_encode($array)
                 ]);
 
@@ -169,10 +161,6 @@ class DatabaseSeeder extends Seeder
                 Report::insert([
                     'date'      => '2018-06-' . $d,
                     'sensor_id' => 8,
-                    'average'   => array_sum($array)/count($array),
-                    'min'       => min($array),
-                    'max'       => max($array),
-                    'total'     => array_sum($array),
                     'data'      => json_encode($array)
                 ]);
 
@@ -184,10 +172,6 @@ class DatabaseSeeder extends Seeder
                 Report::insert([
                     'date'      => '2018-06-' . $d,
                     'sensor_id' => 6,
-                    'average'   => array_sum($array)/count($array),
-                    'min'       => min($array),
-                    'max'       => max($array),
-                    'total'     => array_sum($array),
                     'data'      => json_encode($array)
                 ]);
 
@@ -196,10 +180,6 @@ class DatabaseSeeder extends Seeder
                 Report::insert([
                     'date'      => '2018-06-' . $d,
                     'sensor_id' => 3,
-                    'average'   => array_sum($array)/count($array),
-                    'min'       => min($array),
-                    'max'       => max($array),
-                    'total'     => array_sum($array),
                     'data'      => json_encode($array)
                 ]);
         }

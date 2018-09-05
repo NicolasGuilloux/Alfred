@@ -69,7 +69,6 @@
 
     @if( isset($dailyReport) )
         <!-- Small tiles -->
-
         <div class="row gap-20 m-20">
             @foreach( config('variables.sensorType') as $key => $type)
                     @include('admin.widgets.board', $dailyReport->chartReport($key))
@@ -81,21 +80,40 @@
 
             @foreach($dailyReport->reports as $report)
 
-                @if( $report->sensor->type == 0 )
-                    @include('admin.reports.partials.electric', $report)
-
-                @elseif( $report->sensor->type == 1)
-                    @include('admin.reports.partials.waste', $report)
-
-                @else
-                    @include('admin.reports.partials.water', $report)
-                @endif
-
                 <div class="col-md-6">
                     <div class="bgc-white bd bdrs-3 p-20 mB-20 clickable">
                         <h5>{{ $report->sensor->name }}</h5>
 
                         {!! $report->createChart() !!}
+
+                        <table class="table">
+                            <tr>
+                                <td>Average</td>
+                                <td>{{ number_format((float)$report->average, 2, '.', '') }} {{ $report->unit }}</td>
+                            </tr>
+                            <tr>
+                                <td>Minimum</td>
+                                <td>{{ number_format((float)$report->min, 2, '.', '') }} {{ $report->unit }}</td>
+                            </tr>
+                            <tr>
+                                <td>Maximum</td>
+                                <td>{{ number_format((float)$report->max, 2, '.', '') }} {{ $report->unit }}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Total</b></td>
+                                <td>{{ number_format((float)$report->total, 2, '.', '') }} {{ $report->unit }}</td>
+                            </tr>
+                        </table>
+
+                        @if( $report->sensor->type == 0 )
+                            @include('admin.reports.partials.electric', $report)
+
+                        @elseif( $report->sensor->type == 1)
+                            @include('admin.reports.partials.waste', $report)
+
+                        @else
+                            @include('admin.reports.partials.water', $report)
+                        @endif
                     </div>
                 </div>
 
@@ -108,7 +126,7 @@
 
 @section('scripts')
     @parent
-    
+
     <script>
         document.getElementsByTagName('form')[0].onsubmit = function(e){
             var date = document.getElementById('datePicker').value;
