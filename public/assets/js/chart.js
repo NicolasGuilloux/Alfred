@@ -17,7 +17,7 @@ function loadDoc(date, callback) {
             callback(this.responseText);
     };
 
-    var url = window.location.protocol + "//" + window.location.hostname + "/admin/reports/" + sensor_id + "/chart/" + date;
+    var url = window.location.protocol + "//" + window.location.hostname + "/reports/" + sensor_id + "/chart/" + date;
     console.log("Get data from " + url);
 
     xhttp.open("GET", url, true);

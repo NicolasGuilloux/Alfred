@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'avatar', 'bio', 'role', 'city_id', 'accuweather_id'
+        'name', 'email', 'password', 'avatar', 'bio', 'role', 'city_id', 'birthday'
     ];
 
     /**
@@ -68,7 +68,7 @@ class User extends Authenticatable
 
         if( $value == '' )
             return;
-            
+
         $city = City::where('accuweather_id', '=', $value)->get();
 
         if( sizeof($city) < 1 ) {
@@ -82,6 +82,10 @@ class User extends Authenticatable
         $this->save();
     }
 
+    public function setAvatarAttribute($photo) {
+        $this->attributes['avatar'] = move_file($photo, 'avatar');
+    }
+
     public function getAgeAttribute($value) {
         return (int) floor((time() - strtotime($this->birthday)) / 31556926);
     }
@@ -92,10 +96,6 @@ class User extends Authenticatable
         }
 
         return config('variables.avatar.public').$value;
-    }
-
-    public function setAvatarAttribute($photo) {
-        $this->attributes['avatar'] = move_file($photo, 'avatar');
     }
 
     /*

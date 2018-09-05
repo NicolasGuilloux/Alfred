@@ -12,9 +12,7 @@ class Report extends Model
      * @var array
      */
     protected $fillable = [
-        'sensor_id', 'startDate', 'endDate', 'interval',
-        'average', 'min', 'max', 'total',
-        'data'
+        'sensor_id', 'date', 'data'
     ];
 
     protected $chart = [
@@ -78,10 +76,6 @@ class Report extends Model
     */
     public static function rules($update = false, $id = null) {
         $commun = [
-            'sensor_id'      => 'required',
-            'startDate'      => 'required',
-            'endDate'        => 'required',
-            'interval'       => 'required',
             'data'           => 'required'
         ];
 
@@ -91,10 +85,7 @@ class Report extends Model
 
         return array_merge($commun, [
             'sensor_id'      => 'required',
-            'startDate'      => 'required',
-            'endDate'        => 'required',
-            'interval'       => 'required',
-            'data'           => 'required'
+            'date'           => 'required'
         ]);
     }
 

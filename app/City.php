@@ -16,7 +16,7 @@ class City extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'name', 'country', 'area', 'accuweather_id'
+        'name', 'country', 'area', 'accuweather_id'
     ];
 
 
