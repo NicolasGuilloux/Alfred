@@ -38,12 +38,14 @@ class City extends Model
 
     public function getForecastAttribute() {
 
+        $filename = 'weather/' . $this->accuweather_id . '.ser';
+
         // Create or load the weather.ser file where the weather is stored
-        if( !Storage::exists($this->accuweather_id . '.ser') )
+        if( !Storage::exists($filename) )
             return $this->parseWeather()['forecast'];
 
         // Get the stored value and check it
-        $weather = unserialize( Storage::get($this->accuweather_id . '.ser') );
+        $weather = unserialize( Storage::get($filename) );
 
         // Update the data after 1h
         if( Carbon::now()->timestamp - $weather['query_date'] > 3600 )
@@ -89,7 +91,7 @@ class City extends Model
             $weather['forecast'][] = $day;
         }
 
-        Storage::put($this->accuweather_id . '.ser', serialize($weather));
+        Storage::put('weather/' . $this->accuweather_id . '.ser', serialize($weather));
 
         return $weather;
     }
