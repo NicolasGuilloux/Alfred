@@ -9,6 +9,11 @@ use App\Http\helpers;
 
 class MarketController extends Controller
 {
+    /**
+     * Display a list of addons installed and available on the market
+     *
+     * @return View
+     */
     public function index() {
         /* Get local drivers */
         $localDrivers = getDrivers();

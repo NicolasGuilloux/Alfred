@@ -10,6 +10,11 @@ use Carbon\Carbon;
 
 class NotificationsController extends Controller
 {
+    /**
+     * Loads the list of notifications view
+     *
+     * @return View
+     */
     public function index() {
         return view('admin.notifs')
             ->with('notifications', $this->getNotifs()['notifications'] );
@@ -26,7 +31,7 @@ class NotificationsController extends Controller
     }
 
     /**
-     * Get the notifications
+     * Get the notifications from the cache or from the API
      */
     public function getNotifs() {
 
