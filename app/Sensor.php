@@ -80,6 +80,9 @@ class Sensor extends Model
     |------------------------------------------------------------------------------------
     */
 
+    /**
+     * Generates an array of the childhood of the sensor
+     */
     public function getDataTree() {
         $array = [
             'id' => $this->id,

@@ -15,6 +15,11 @@ class Report extends Model
         'sensor_id', 'date', 'data'
     ];
 
+    /**
+     * Options to configure a Chart.JS canvas
+     *
+     * @var array
+     */
     protected $chart = [
         "type" => "line",
         "data" => [
@@ -102,7 +107,6 @@ class Report extends Model
         return config('variables.sensorUnit')[$this->type];
     }
 
-
     public function getDataAttribute($value) {
         return json_decode($value);
     }
@@ -174,6 +178,12 @@ class Report extends Model
     | Methods
     |------------------------------------------------------------------------------------
     */
+
+    /**
+     * Generates the HTML and Javascript that can be added directly inline
+     *
+     * @return String HTML string
+     */
     public function createChart() {
         $str = '<canvas id="' . $this->id . '"></canvas>';
 

@@ -36,6 +36,9 @@ class City extends Model
         $this->area = $data['AdministrativeArea']['LocalizedName'];
     }
 
+    /**
+     * Get the forecast from the file, or make an API request
+     */
     public function getForecastAttribute() {
 
         $filename = 'weather/' . $this->accuweather_id . '.ser';
