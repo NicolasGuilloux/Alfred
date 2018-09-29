@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
         User::insert([
             'name'      => 'Nicolas Guilloux',
             'email'     => 'novares.x@gmail.com',
-            'password'  => bcrypt('imafla'),
+            'password'  => bcrypt('nguilloux'),
             'birthday'  => '1994-06-30',
             'avatar'    => 'O5kp2F3Vzl5rpw6Q.jpg',
             'role'      => 10,
@@ -56,7 +56,7 @@ class DatabaseSeeder extends Seeder
         User::insert([
             'name' => 'John Doe',
             'email' => 'john@gmail.com',
-            'password' => bcrypt('imafla'),
+            'password' => bcrypt('testtest'),
             'bio'      => $faker->realText()
         ]);
 
