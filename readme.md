@@ -10,13 +10,13 @@ This a project made for the final project of the [Master of Science Interactive 
 All you need is to run these commands:
 ```bash
 git clone https://github.com/NicolasGuilloux/Alfred.git
-cd alfred
+cd Alfred
 composer install                   # Install backend dependencies
 sudo chmod 777 storage/ -R         # Chmod Storage
 cp .env.example .env               # Update database credentials configuration
 php artisan key:generate           # Generate new keys for Laravel
 php artisan migrate:fresh --seed   # Run migration and seed users and categories for testing
-php artisan storage:link	   # Make the public folder in the storage accessible from a link
+php artisan storage:link	       # Make the public folder in the storage accessible from a link
 yarn install                       # or npm i to Install node dependencies
 npm run production                 # To compile assets for prod
 ```
@@ -31,10 +31,10 @@ chmod +x install_raspberrypi.sh
 
 
 ## Demo:
-- Online demo: Can be found at [alfred.nicolasguilloux.eu](http://alfred.nicolasguilloux.eu/)
+- Online demo: Can be found at [cloud.nicolasguilloux.eu](http://cloud.nicolasguilloux.eu/) (Offline after October 2018)
 
-**Note:**  
-Username: test@test.com      
+**Note:**
+Username: john@gmail.com
 Password: testtest
 
 ***

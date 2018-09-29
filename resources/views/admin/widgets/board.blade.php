@@ -18,7 +18,7 @@
 
                     <!-- Number -->
                     <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-{{ $number['color'] }}-50 c-{{ $number['color'] }}-500">
-                        {{ $number['value'] }} {{ $number['unit'] }}
+                        {{ number_format((float) $number['value'], 2, '.', '') }} {{ $number['unit'] }}
                     </span>
                 </div>
             </div>
