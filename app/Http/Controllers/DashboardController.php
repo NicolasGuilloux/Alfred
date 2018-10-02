@@ -24,7 +24,7 @@ class DashboardController extends Controller
      * @return JSON Array of cities
      */
     public function citySearch($query) {
-        $url = 'http://dataservice.accuweather.com/locations/v1/cities/autocomplete?q=' . $query . '&apikey=' . env('ACCUWHEATER_KEY');
+        $url = 'http://dataservice.accuweather.com/locations/v1/cities/autocomplete?q=' . urlencode($query) . '&apikey=' . env('ACCUWHEATER_KEY');
         $json = json_decode(file_get_contents($url), true);
 
         return response()->json($json);

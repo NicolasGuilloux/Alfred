@@ -43,6 +43,14 @@ class SensorController extends Controller
         foreach(Sensor::all() as $sensor)
             $sensorsTable[$sensor->id] = $sensor->name;
 
+        $driversList = Storage::files('drivers/');
+        $drivers = array();
+
+        foreach( $driversList as $driver ) {
+            $name = preg_replace('/\\.[^.\\s]{3,4}$/', '', str_replace('drivers/', '', $driver) );
+            $drivers[$name] = $name;
+        }
+
         return view('admin.sensors.create')
             ->with('sensorsTable', $sensorsTable)
             ->withDrivers($drivers);
@@ -58,9 +66,9 @@ class SensorController extends Controller
     {
         $this->validate($request, Sensor::rules());
 
-        Sensor::create($request->all());
+        $sensor = Sensor::create($request->all());
 
-        return back()->withSuccess(trans('app.success_store'));
+        return  redirect()->route('sensors.edit', $sensor->id)->withSuccess(trans('app.success_store'));
     }
 
     /**
@@ -116,7 +124,7 @@ class SensorController extends Controller
 
         $item->update($request->all());
 
-        return redirect()->route(ADMIN . '.sensors.index')->withSuccess(trans('app.success_update'));
+        return back()->withSuccess(trans('app.success_update'));
     }
 
     /**

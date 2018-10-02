@@ -23,15 +23,14 @@ class DatabaseSeeder extends Seeder
         $city->accuweather_id = 207931;
         $city->save();
 
-        // Dinan
+        // Cork
         $city = new City;
-        $city->accuweather_id = 132541;
+        $city->accuweather_id = 207697;
         $city->save();
 
 
         // Create User
         $faker = Faker\Factory::create();
-
         User::insert([
             'name'      => 'Nicolas Guilloux',
             'email'     => 'novares.x@gmail.com',
@@ -49,23 +48,18 @@ class DatabaseSeeder extends Seeder
             'email'     => 'f.boehme@cs.ucc.ie',
             'password'  => bcrypt('fboehme'),
             'bio'       => $faker->realText(),
+            'city_id'   => 2
+        ]);
+
+        $faker = Faker\Factory::create();
+        User::insert([
+            'name'      => 'John Doe',
+            'email'     => 'john@gmail.com',
+            'password'  => bcrypt('testtest'),
+            'avatar'    => '36Fo13GccFJ9o6Xl.png',
+            'role'      => 10,
+            'bio'       => $faker->realText(),
             'city_id'   => 1
-        ]);
-
-        $faker = Faker\Factory::create();
-        User::insert([
-            'name' => 'John Doe',
-            'email' => 'john@gmail.com',
-            'password' => bcrypt('testtest'),
-            'bio'      => $faker->realText()
-        ]);
-
-        $faker = Faker\Factory::create();
-        User::insert([
-            'name' => 'The tester',
-            'email' => 'test@test.com',
-            'password' => bcrypt('testtest'),
-            'bio'      => $faker->realText()
         ]);
 
 

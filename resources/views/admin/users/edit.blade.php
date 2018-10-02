@@ -29,12 +29,17 @@
                     {{ $item->name }}
                 </h5>
 
-                <p>
-                    {{ $item->age }} years old<br />
-                    @if( isset($item->city) )
-                        Live in {{ $item->city->name }}, {{ $item->city->country }}
-                    @endif
-                </p>
+                @if( $item->age && isset($item->city) )
+                    <p>
+                        @if( $item->age )
+                            {{ $item->age }} years old<br />
+                        @endif
+
+                        @if( isset($item->city) )
+                            Live in {{ $item->city->name }}, {{ $item->city->country }}
+                        @endif
+                    </p>
+                @endif
 
                 <p>
                     <a href="mailto:{{ $item->email }}">{{ $item->email }}</a>

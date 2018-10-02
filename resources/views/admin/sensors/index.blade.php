@@ -45,6 +45,59 @@
         </div>
     </div>
 </div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="bgc-white bd bdrs-3 p-20 mB-20">
+            <h2>Alternative view</h2>
+            <p>
+                Due to a bug with the tree drawing, only the first sensor of each type is displayed.<br />
+                Sensors can be accessed bellow using the following alternative view, a list to represent the relationship.
+            </p>
+            <p>
+                Sorry for the inconvenience.
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="bgc-white bd bdrs-3 p-20 mB-20">
+            <h3>Electricity</h3>
+
+            <ul>
+                @foreach( $items[0] as $key => $item )
+                    @include('admin.sensors.partial', $item)
+                @endforeach
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="bgc-white bd bdrs-3 p-20 mB-20">
+            <h3>Waste</h3>
+
+            <ul>
+                @foreach( $items[1] as $key => $item )
+                    @include('admin.sensors.partial', $item)
+                @endforeach
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="bgc-white bd bdrs-3 p-20 mB-20">
+            <h3>Water</h3>
+
+            <ul>
+                @foreach( $items[2] as $key => $item )
+                    @include('admin.sensors.partial', $item)
+                @endforeach
+            </ul>
+        </div>
+    </div>
+</div>
 @endsection
 
 @section('scripts')

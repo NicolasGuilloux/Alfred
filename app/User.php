@@ -87,6 +87,9 @@ class User extends Authenticatable
     }
 
     public function getAgeAttribute($value) {
+        if( $this->birthday == null)
+            return false;
+            
         return (int) floor((time() - strtotime($this->birthday)) / 31556926);
     }
 
